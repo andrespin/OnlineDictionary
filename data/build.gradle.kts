@@ -40,4 +40,15 @@ dependencies {
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
+
+
+
+//    implementation(project(":presentation"))
+//    implementation(project(":presentation:about_app"))
+//    implementation(project(":presentation:dictionary"))
+//    implementation(project(":presentation:settings"))
+//    implementation(project(":domain"))
+//    implementation(project(":data"))
+//    implementation(project(":data:local"))
+//    implementation(project(":data:remote"))
 }

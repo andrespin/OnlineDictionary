@@ -45,5 +45,18 @@ dependencies {
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
 
+    // Hilt
+//    implementation ("com.google.dagger:hilt-android:2.48.1")
+//    implementation ("com.google.dagger:hilt-compiler:2.48.1")
+
+    // Modules
+    implementation(project(":presentation"))
+    implementation(project(":presentation:about_app"))
+    implementation(project(":presentation:dictionary"))
+    implementation(project(":presentation:settings"))
     implementation(project(":domain"))
+    implementation(project(":data"))
+    implementation(project(":data:local"))
+    implementation(project(":data:remote"))
+
 }
