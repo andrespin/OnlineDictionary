@@ -1,0 +1,76 @@
+[versions]
+ktx = "androidx.core:core-ktx:1.12.0"
+appcompat = "androidx.appcompat:appcompat:1.6.1"
+material = "com.google.android.material:material:1.10.0"
+constraintlayout = "androidx.constraintlayout:constraintlayout:2.1.4"
+junit = "junit:junit:4.13.2"
+androidxjunit = "androidx.test.ext:junit:1.1.5"
+espressocore = "androidx.test.espresso:espresso-core:3.5.1"
+
+# Hilt
+hiltandroid = "com.google.dagger:hilt-android:2.48.1"
+hiltcompiler = "com.google.dagger:hilt-compiler:2.48.1"
+
+hilt = "2.44.2"
+hiltExt = "1.0.0"
+
+[libraries]
+hilt-android-core = { group = "com.google.dagger", name = "hilt-android", version.ref = "hilt" }
+hilt-android-testing = { group = "com.google.dagger", name = "hilt-android-testing", version.ref = "hilt" }
+hilt-compiler = { group = "com.google.dagger", name = "hilt-android-compiler", version.ref = "hilt" }
+hilt-ext-compiler = { group = "androidx.hilt", name = "hilt-compiler", version.ref = "hiltExt" }
+hilt-ext-work = { group = "androidx.hilt", name = "hilt-work", version.ref = "hiltExt" }
+
+
+[plugins]
+hilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
+
+
+#//    implementation ("com.google.dagger:hilt-android:2.48.1")
+#//    implementation ("com.google.dagger:hilt-compiler:2.48.1")
+
+
+
+
+
+
+
+#implementation("com.google.android.material:material:1.10.0")
+#implementation("androidx.constraintlayout:constraintlayout:2.1.4")
+#testImplementation("junit:junit:4.13.2")
+#androidTestImplementation("androidx.test.ext:junit:1.1.5")
+#androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
+
+
+
+#[libraries]
+#androidx-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "ktx" }
+#androidx = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
+
+#implementation("androidx.appcompat:appcompat:1.6.1")
+
+
+
+#implementation("androidx.core:core-ktx:1.12.0")
+
+#dependencies {
+#implementation("androidx.core:core-ktx:1.9.0")
+#
+#}
+
+
+
+
+#
+#dependencies {
+#implementation(libs.androidx.ktx)
+#
+#}
+
+
+
+#[versions]
+#ktx = "1.9.0"
+#
+#[libraries]
+#androidx-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "ktx" }
