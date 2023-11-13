@@ -11,15 +11,22 @@ espressocore = "androidx.test.espresso:espresso-core:3.5.1"
 hiltandroid = "com.google.dagger:hilt-android:2.48.1"
 hiltcompiler = "com.google.dagger:hilt-compiler:2.48.1"
 
-hilt = "2.44.2"
-hiltExt = "1.0.0"
+hilt = "2.48.1"
+hiltExt = "1.1.0"
 
 
 androidGradlePlugin = "8.1.1"
 
 kotlin = "1.9.0"
 
-ksp = "1.8.10-1.0.9"
+#ksp = "1.8.10-1.0.9"
+
+ksp = "1.9.20-1.0.13"
+compileSdk = "34"
+minSdk = "24"
+targetSdk = "33"
+
+room = "2.6.0"
 
 
 
@@ -29,6 +36,10 @@ hilt-android-testing = { group = "com.google.dagger", name = "hilt-android-testi
 hilt-compiler = { group = "com.google.dagger", name = "hilt-android-compiler", version.ref = "hilt" }
 hilt-ext-compiler = { group = "androidx.hilt", name = "hilt-compiler", version.ref = "hiltExt" }
 hilt-ext-work = { group = "androidx.hilt", name = "hilt-work", version.ref = "hiltExt" }
+
+room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "room" }
+room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "room" }
+room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "room" }
 
 
 [plugins]
@@ -45,51 +56,7 @@ kapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "kotlin" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 
 
-#//    implementation ("com.google.dagger:hilt-android:2.48.1")
-#//    implementation ("com.google.dagger:hilt-compiler:2.48.1")
 
 
 
 
-
-
-
-#implementation("com.google.android.material:material:1.10.0")
-#implementation("androidx.constraintlayout:constraintlayout:2.1.4")
-#testImplementation("junit:junit:4.13.2")
-#androidTestImplementation("androidx.test.ext:junit:1.1.5")
-#androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
-
-
-
-#[libraries]
-#androidx-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "ktx" }
-#androidx = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
-
-#implementation("androidx.appcompat:appcompat:1.6.1")
-
-
-
-#implementation("androidx.core:core-ktx:1.12.0")
-
-#dependencies {
-#implementation("androidx.core:core-ktx:1.9.0")
-#
-#}
-
-
-
-
-#
-#dependencies {
-#implementation(libs.androidx.ktx)
-#
-#}
-
-
-
-#[versions]
-#ktx = "1.9.0"
-#
-#[libraries]
-#androidx-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "ktx" }
