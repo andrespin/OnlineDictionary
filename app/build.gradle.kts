@@ -1,9 +1,9 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
-    alias(libs.plugins.kapt)
     alias(libs.plugins.ksp)
     alias(libs.plugins.hilt)
+    alias(libs.plugins.kapt)
 }
 
 android {
@@ -40,7 +40,6 @@ android {
 
 dependencies {
 
-
     implementation(libs.versions.ktx)
     implementation(libs.versions.appcompat)
     implementation(libs.versions.material)
@@ -49,11 +48,9 @@ dependencies {
     androidTestImplementation(libs.versions.androidxjunit)
     androidTestImplementation(libs.versions.espressocore)
 
-
     // Hilt
     implementation(libs.hilt.android.core)
     kapt(libs.hilt.compiler)
-
 
 //     Modules
     implementation(project(":presentation"))
@@ -62,7 +59,6 @@ dependencies {
     implementation(project(":presentation:settings"))
     implementation(project(":domain"))
     implementation(project(":data"))
-//    implementation(project(":data:local"))
+    implementation(project(":data:local"))
     implementation(project(":data:remote"))
-
 }

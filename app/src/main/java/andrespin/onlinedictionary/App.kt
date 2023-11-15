@@ -1,7 +1,7 @@
 package andrespin.onlinedictionary
 
 import android.app.Application
+import dagger.hilt.android.HiltAndroidApp
 
-
-//@HiltAndroidApp
+@HiltAndroidApp
 class App : Application()
