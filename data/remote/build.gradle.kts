@@ -49,6 +49,13 @@ dependencies {
     implementation(libs.hilt.android.core)
     kapt(libs.hilt.compiler)
 
+    //Retrofit
+    implementation(libs.retrofit)
+    implementation(libs.retrofitMoshi)
+    implementation(libs.okHttp)
+    implementation(libs.moshi)
+    implementation(libs.moshiKotlin)
+
     implementation(project(":domain"))
     implementation(project(":data"))
 }

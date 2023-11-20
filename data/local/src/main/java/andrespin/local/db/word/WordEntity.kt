@@ -35,4 +35,6 @@ data class WordEntity(
     var translationsOfParticiple: String,
 
     var translationsOfAdverbialParticiple: String,
-)
+) : WordEntityMapper() {
+    fun mapToWord() = mapWordEntityToWord(this)
+}
