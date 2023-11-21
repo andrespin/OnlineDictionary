@@ -52,7 +52,13 @@ dependencies {
     implementation(libs.hilt.android.core)
     kapt(libs.hilt.compiler)
 
-//     Modules
+    // Navigation
+    implementation(libs.navigationfragmentktx)
+    implementation(libs.navigationuiktx)
+    implementation(libs.navigationdynamicfeaturesfragment)
+    androidTestImplementation(libs.navigationtesting)
+
+    // Modules
     implementation(project(":presentation"))
     implementation(project(":presentation:about_app"))
     implementation(project(":presentation:dictionary"))

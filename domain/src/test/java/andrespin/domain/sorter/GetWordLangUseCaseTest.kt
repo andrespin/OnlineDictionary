@@ -46,5 +46,4 @@ class GetWordLangUseCaseTest {
         val notIdentifiedRespExpected =  GetWordLangUseCase.Response(Language.NotIdentified)
         assertEquals(notIdentifiedRespExpected,notIdentifiedResp)
     }
-
 }

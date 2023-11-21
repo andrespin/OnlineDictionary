@@ -50,6 +50,7 @@ dependencies {
     implementation(libs.versions.appcompat)
     implementation(libs.versions.material)
     implementation(libs.versions.constraintlayout)
+    implementation(libs.viewbinding)
     testImplementation(libs.versions.junit)
     androidTestImplementation(libs.versions.androidxjunit)
     androidTestImplementation(libs.versions.espressocore)
