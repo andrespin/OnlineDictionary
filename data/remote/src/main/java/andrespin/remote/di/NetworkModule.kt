@@ -1,40 +1,31 @@
 package andrespin.remote.di
 
 import andrespin.remote.networking.WordApiService
-import com.squareup.moshi.Moshi
-import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
+import com.google.gson.FieldNamingPolicy
+import com.google.gson.Gson
+import com.google.gson.GsonBuilder
+
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import okhttp3.OkHttpClient
 import retrofit2.Retrofit
-import retrofit2.converter.moshi.MoshiConverterFactory
-import java.util.concurrent.TimeUnit
+import retrofit2.converter.gson.GsonConverterFactory
+
 
 @Module
 @InstallIn(SingletonComponent::class)
 class NetworkModule {
 
     @Provides
-    fun provideOkHttpClient(): OkHttpClient = OkHttpClient
-        .Builder()
-        .readTimeout(15, TimeUnit.SECONDS)
-        .connectTimeout(15, TimeUnit.SECONDS)
-        .build()
+    fun gson(): Gson = GsonBuilder()
+        .setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)
+        .create()
 
     @Provides
-    fun provideMoshi(): Moshi = Moshi.Builder().add(KotlinJsonAdapterFactory()).build()
-
-    @Provides
-    fun provideRetrofit(okHttpClient: OkHttpClient, moshi: Moshi): Retrofit = Retrofit.Builder()
-        .baseUrl("https://jsonplaceholder.typicode.com/")
-        .client(okHttpClient)
-        .addConverterFactory(MoshiConverterFactory.create(moshi))
-        .build()
-
-    @Provides
-    fun provideUserService(retrofit: Retrofit): WordApiService =
-        retrofit.create(WordApiService::class.java)
+    fun getWordApi(gson: Gson): WordApiService = Retrofit.Builder()
+        .baseUrl("https://dictionary.yandex.net/api/v1/")
+        .addConverterFactory(GsonConverterFactory.create(gson))
+        .build().create(WordApiService::class.java)
 
 }

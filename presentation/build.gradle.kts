@@ -51,13 +51,20 @@ dependencies {
     implementation(libs.versions.material)
     implementation(libs.versions.constraintlayout)
     implementation(libs.viewbinding)
+    implementation(libs.navigation.fragment.ktx)
+    implementation(libs.navigation.ui.ktx)
     testImplementation(libs.versions.junit)
     androidTestImplementation(libs.versions.androidxjunit)
     androidTestImplementation(libs.versions.espressocore)
+
+    implementation (libs.lifecyclescope)
+    implementation (libs.viewmodelscope)
 
     // Hilt
     implementation(libs.hilt.android.core)
     kapt(libs.hilt.compiler)
 
     implementation(project(":domain"))
+
+
 }

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="settings_hyperlink">
+        Данное приложение использует
+    API Яндекс словаря.
+    Для работы в этом приложении
+    необходимо получить и вставить
+    в поле ниже ключпо ссылке
+        :\n<a href="https://yandex.ru/dev/dictionary/">https://yandex.ru/dev/dictionary/</a></string>
+
+    <string name="settings">Настройки</string>
+    <string name="about_app">О приложении</string>
+
+</resources>

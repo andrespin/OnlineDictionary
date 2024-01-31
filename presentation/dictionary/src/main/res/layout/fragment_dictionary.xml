@@ -5,8 +5,36 @@
     android:id="@+id/dictionary_fragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#EFEFEF"
+    android:background="@color/main_background"
     android:orientation="vertical">
+
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/topAppBar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#D9D9D9"
+            app:menu="@menu/app_bar_menu"
+            app:navigationIcon="@drawable/ic_arrow_back"
+            style="@style/Theme.OnlineDictionary">
+
+            <TextView
+                android:id="@+id/toolbar_title"
+                style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Dictionary"
+                android:textStyle="italic"
+                android:textSize="25sp" />
+
+        </com.google.android.material.appbar.MaterialToolbar>
+
+    </com.google.android.material.appbar.AppBarLayout>
 
     <include
         android:id="@+id/layout_search"
@@ -21,7 +49,7 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_words"
-        android:visibility="gone"
+        android:visibility="visible"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:scrollbars="vertical" />
@@ -31,7 +59,63 @@
         layout="@layout/layout_dictionary_state_found"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:visibility="visible">
+        android:visibility="gone">
+    </include>
+
+    <include
+        android:id="@+id/layout_dictionary_error_invalid_key"
+        layout="@layout/layout_dictionary_error_invalid_key"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </include>
+
+    <include
+        android:id="@+id/layout_dictionary_error_no_connection"
+        layout="@layout/layout_dictionary_error_no_connection"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </include>
+
+    <include
+        android:id="@+id/layout_dictionary_error_no_key"
+        layout="@layout/layout_dictionary_error_no_key"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </include>
+
+    <include
+        android:id="@+id/layout_dictionary_error_not_found"
+        layout="@layout/layout_dictionary_error_not_found"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </include>
+
+    <include
+        android:id="@+id/layout_dictionary_error_unknown"
+        layout="@layout/layout_dictionary_error_unknown"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </include>
+
+    <include
+        android:id="@+id/layout_dictionary_loading"
+        layout="@layout/layout_dictionary_state_loading"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </include>
+
+    <include
+        android:id="@+id/layout_dictionary_error_network"
+        layout="@layout/layout_dictionary_error_network"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
     </include>
 
 </LinearLayout>

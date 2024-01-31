@@ -42,6 +42,8 @@ dependencies {
     implementation(libs.versions.material)
     implementation(libs.versions.constraintlayout)
     testImplementation(libs.versions.junit)
+    testImplementation(libs.mockito)
+    testImplementation(libs.coroutinestest)
     androidTestImplementation(libs.versions.androidxjunit)
     androidTestImplementation(libs.versions.espressocore)
 
@@ -50,11 +52,14 @@ dependencies {
     kapt(libs.hilt.compiler)
 
     //Retrofit
-    implementation(libs.retrofit)
-    implementation(libs.retrofitMoshi)
-    implementation(libs.okHttp)
-    implementation(libs.moshi)
-    implementation(libs.moshiKotlin)
+//    implementation(libs.retrofit)
+//    implementation(libs.retrofitMoshi)
+//    implementation(libs.okHttp)
+//    implementation(libs.moshi)
+//    implementation(libs.moshiKotlin)
+
+    implementation("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
 
     implementation(project(":domain"))
     implementation(project(":data"))

@@ -33,6 +33,11 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+
+    buildFeatures {
+        viewBinding = true
+        dataBinding = true
+    }
 }
 
 dependencies {
@@ -45,10 +50,28 @@ dependencies {
     androidTestImplementation(libs.versions.androidxjunit)
     androidTestImplementation(libs.versions.espressocore)
 
+    implementation (libs.lifecyclescope)
+    implementation (libs.viewmodelscope)
+
     // Hilt
     implementation(libs.hilt.android.core)
     kapt(libs.hilt.compiler)
 
     implementation(project(":domain"))
     implementation(project(":presentation"))
+
+    //Retrofit
+    implementation(libs.retrofit)
+    implementation(libs.retrofitMoshi)
+    implementation(libs.okHttp)
+    implementation(libs.moshi)
+    implementation(libs.moshiKotlin)
+    implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
+
+    // Navigation
+    implementation(libs.navigationfragmentktx)
+    implementation(libs.navigationuiktx)
+    implementation(libs.navigationdynamicfeaturesfragment)
+    androidTestImplementation(libs.navigationtesting)
+
 }

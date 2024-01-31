@@ -1,26 +1,19 @@
 package andrespin.domain.usecase.sorter
 
-import andrespin.domain.entity.Language
 import andrespin.domain.entity.PreviousWord
 import andrespin.domain.entity.Word
-import andrespin.domain.usecase.UseCase
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 
-class FindMatchingLettersInWordUseCase(configuration: Configuration) :
-    UseCase<FindMatchingLettersInWordUseCase.Request, FindMatchingLettersInWordUseCase.Response>(
-        configuration
-    ) {
-    override fun process(request: FindMatchingLettersInWordUseCase.Request)
-            : Flow<FindMatchingLettersInWordUseCase.Response> {
-        val mLetters = findMatchingLettersInWords(request.words, request.query)
-        return flow{
-            emit(Response(mLetters))
+// val dispatcher: CoroutineDispatcher = Dispatchers.Default
+class FindMatchingLettersInWordUseCase() {
+
+    operator fun invoke(words: List<Word>, query: String) : Flow<List<PreviousWord>> {
+        val mLetters = findMatchingLettersInWords(words, query)
+        return flow {
+            emit(mLetters)
         }
     }
-
-    data class Request(val words: List<Word>, val query: String) : UseCase.Request
-    data class Response(val list: List<PreviousWord>) : UseCase.Response
 
     private fun findMatchingLettersInWords(
         words: List<Word>,
@@ -60,4 +53,5 @@ class FindMatchingLettersInWordUseCase(configuration: Configuration) :
     }
 
 }
+
 

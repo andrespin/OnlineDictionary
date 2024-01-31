@@ -7,7 +7,6 @@ import kotlinx.coroutines.test.runTest
 import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Test
-import org.mockito.Mockito.mock
 
 class GetWordLangUseCaseTest {
 
@@ -18,7 +17,7 @@ class GetWordLangUseCaseTest {
 
     @Before
     fun init() {
-        useCase = GetWordLangUseCase(mock())
+        useCase = GetWordLangUseCase()
         rusWord = "Собака"
         engWord = "Cat"
         notIdentifiedWord = "Соbаkа"
@@ -26,24 +25,22 @@ class GetWordLangUseCaseTest {
 
     @Test
     fun isRusIdentified() = runTest {
-        val rusRequest = GetWordLangUseCase.Request(rusWord)
-        val rusResp = useCase.process(rusRequest).first()
-        val rusRespExpected =  GetWordLangUseCase.Response(Language.Russian)
-        assertEquals(rusRespExpected,rusResp)
+        val rusResp = useCase.invoke(rusWord).first()
+        val rusRespExpected = Language.Russian
+        assertEquals(rusRespExpected, rusResp)
     }
 
     @Test
-    fun isEngIdentified() = runTest{
-        val engRequest = GetWordLangUseCase.Request(engWord)
-        val engResp = useCase.process(engRequest).first()
-        val engRespExpected =  GetWordLangUseCase.Response(Language.English)
-        assertEquals(engRespExpected,engResp)
+    fun isEngIdentified() = runTest {
+        val engResp = useCase.invoke(engWord).first()
+        val engRespExpected = Language.English
+        assertEquals(engRespExpected, engResp)
     }
+
     @Test
     fun isNotIdentified_Identified() = runTest {
-        val notIdentifiedRequest = GetWordLangUseCase.Request(notIdentifiedWord)
-        val notIdentifiedResp = useCase.process(notIdentifiedRequest).first()
-        val notIdentifiedRespExpected =  GetWordLangUseCase.Response(Language.NotIdentified)
-        assertEquals(notIdentifiedRespExpected,notIdentifiedResp)
+        val notIdentifiedResp = useCase.invoke(notIdentifiedWord).first()
+        val notIdentifiedRespExpected = Language.NotIdentified
+        assertEquals(notIdentifiedRespExpected, notIdentifiedResp)
     }
 }

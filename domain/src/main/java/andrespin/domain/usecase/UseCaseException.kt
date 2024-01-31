@@ -19,16 +19,4 @@ sealed class UseCaseException(cause: Throwable) : Throwable(cause) {
             return if (throwable is UseCaseException) throwable else UnknownException(throwable)
         }
     }
-
-    /*
-        inner class NoKeyException : CustomCaughtExceptions()
-
-    inner class InvalidKeyException : CustomCaughtExceptions()
-
-    inner class NotFoundException : CustomCaughtExceptions()
-
-    inner class NoConnectionException : CustomCaughtExceptions()
-     */
-
-
 }

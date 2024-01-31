@@ -1,59 +1,60 @@
 package andrespin.dictionary
 
-import android.os.Bundle
-import androidx.fragment.app.Fragment
+import andrespin.dictionary.databinding.FragmentDictionaryBinding
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.NavHostFragment
+import dagger.hilt.android.AndroidEntryPoint
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 
-/**
- * A simple [Fragment] subclass.
- * Use the [DictionaryFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
-class DictionaryFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+@AndroidEntryPoint
+class DictionaryFragment :
+    DictionaryFragmentAbstract<FragmentDictionaryBinding, DictionaryViewModel>() {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
+    override val viewModelClass: Class<DictionaryViewModel>
+        get() = DictionaryViewModel::class.java
+    override val bindingInflater: (LayoutInflater, ViewGroup?, Boolean) -> FragmentDictionaryBinding
+        get() = FragmentDictionaryBinding::inflate
+    override val frTag: String
+        get() = "DictionaryFragment"
+
+//    private val navHostFragment: NavHostFragment by lazy {
+//        supportFragmentManager.findFragmentById(R.id.fragment_container_view)
+//                as NavHostFragment
+//    }
+
+
+
+
+
+    override fun initClickListeners() {
+        initOnQueryTextListener()
+        initOnSearchClickListener()
+        initOnSearchCloseListener()
+     //   getParentFragmentManager().findFragmentById()
+
+    }
+
+    override fun process() = initAdapters(this)
+
+
+    override fun observeViewModel() = lifecycleScope.launch {
+        model.state.collectLatest {
+            when (it) {
+                is DictionaryState.ShowPreviousWords -> showPrevWords(it)
+                is DictionaryState.ShowWord -> showFoundWord(it)
+                DictionaryState.Loading -> showLoading()
+                DictionaryState.InvalidKeyException -> showInvalidKey()
+                DictionaryState.NoConnectionException -> showNoConnection()
+                DictionaryState.NoKeyException -> showNoKey()
+                DictionaryState.NotFoundException -> showNotFound()
+                DictionaryState.UnknownException -> showUnknown()
+                DictionaryState.WordNetworkException -> showNetworkTrouble()
+            }
         }
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?,
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_dictionary, container, false)
-    }
-
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment DictionaryFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            DictionaryFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
-    }
 }

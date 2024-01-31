@@ -13,7 +13,6 @@ import kotlinx.coroutines.test.runTest
 import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Test
-import org.mockito.Mockito.mock
 
 class FindMatchingLettersInWordUseCaseTest {
 
@@ -23,10 +22,11 @@ class FindMatchingLettersInWordUseCaseTest {
     private lateinit var highlightedExpected: List<PreviousWord>
     private lateinit var dogWordEnList: List<Word>
 
+
     @Before
     fun init() {
 
-        useCase = FindMatchingLettersInWordUseCase(mock())
+        useCase = FindMatchingLettersInWordUseCase()
 
         wordDogDescEnList = listOf(
             WordDescription(noun, "dog", "собака, кобель, дог"),
@@ -47,18 +47,10 @@ class FindMatchingLettersInWordUseCaseTest {
 
     @Test
     fun testProcess() = runTest {
-
-        val req = FindMatchingLettersInWordUseCase.Request(dogWordEnList, "D")
-
-        val resp = useCase.process(req).first()
-
-        val highlightedStartStopList = listOf(resp.list[0].start, resp.list[0].end)
-
+        val response = useCase.invoke(dogWordEnList, "D").first()
+        val highlightedStartStopList = listOf(response[0].start, response[0].end)
         val expectedStartStopList = listOf(highlightedExpected[0].start, highlightedExpected[0].end)
-
         assertEquals(expectedStartStopList, highlightedStartStopList)
-
     }
-
 
 }

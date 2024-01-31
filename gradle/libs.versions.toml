@@ -19,11 +19,10 @@ androidGradlePlugin = "8.1.1"
 
 kotlin = "1.9.20"
 
-#ksp = "1.8.10-1.0.9"
-
 ksp = "1.9.20-1.0.13"
 compileSdk = "34"
 minSdk = "24"
+mockitoInline = "2.13.0"
 targetSdk = "33"
 
 room = "2.6.0"
@@ -36,6 +35,12 @@ okHttp = "4.12.0"
 
 nav_version = "2.7.5"
 
+junitver = "4.13.2"
+mockitover = "4.0.0"
+coroutinesver = "1.7.3"
+
+vmscope = "2.4.0"
+lfscope = "2.4.0"
 
 [libraries]
 hilt-android-core = { group = "com.google.dagger", name = "hilt-android", version.ref = "hilt" }
@@ -44,24 +49,34 @@ hilt-compiler = { group = "com.google.dagger", name = "hilt-android-compiler", v
 hilt-ext-compiler = { group = "androidx.hilt", name = "hilt-compiler", version.ref = "hiltExt" }
 hilt-ext-work = { group = "androidx.hilt", name = "hilt-work", version.ref = "hiltExt" }
 
+mockito-inline = { module = "org.mockito:mockito-inline", version.ref = "mockitoInline" }
 room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "room" }
 room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "room" }
 room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "room" }
 
-datastore = {group = "androidx.datastore", name = "datastore-preferences", version.ref = "datastore"}
+datastore = { group = "androidx.datastore", name = "datastore-preferences", version.ref = "datastore" }
 
-retrofit = {group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit" }
-retrofitMoshi = {group = "com.squareup.retrofit2", name = "converter-moshi", version.ref = "retrofit"}
+retrofit = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit" }
+retrofitMoshi = { group = "com.squareup.retrofit2", name = "converter-moshi", version.ref = "retrofit" }
 
-moshi = {group = "com.squareup.moshi", name = "moshi", version.ref = "moshi"}
-moshiKotlin = {group = "com.squareup.moshi", name = "moshi-kotlin",version.ref = "moshi" }
-okHttp = {group = "com.squareup.okhttp3", name = "okhttp", version.ref = "okHttp"}
+moshi = { group = "com.squareup.moshi", name = "moshi", version.ref = "moshi" }
+moshiKotlin = { group = "com.squareup.moshi", name = "moshi-kotlin", version.ref = "moshi" }
+okHttp = { group = "com.squareup.okhttp3", name = "okhttp", version.ref = "okHttp" }
 
-navigationfragmentktx = {group = "androidx.navigation", name = "navigation-fragment-ktx", version.ref = "nav_version"}
-navigationuiktx = {group = "androidx.navigation", name = "navigation-ui-ktx", version.ref = "nav_version"}
-navigationdynamicfeaturesfragment = {group = "androidx.navigation", name = "navigation-dynamic-features-fragment", version.ref = "nav_version"}
-navigationtesting = {group = "androidx.navigation", name = "navigation-testing", version.ref = "nav_version"}
+navigationfragmentktx = { group = "androidx.navigation", name = "navigation-fragment-ktx", version.ref = "nav_version" }
+navigationuiktx = { group = "androidx.navigation", name = "navigation-ui-ktx", version.ref = "nav_version" }
+navigationdynamicfeaturesfragment = { group = "androidx.navigation", name = "navigation-dynamic-features-fragment", version.ref = "nav_version" }
+navigationtesting = { group = "androidx.navigation", name = "navigation-testing", version.ref = "nav_version" }
 viewbinding = { group = "androidx.databinding", name = "viewbinding", version = "8.1.4" }
+
+viewmodelscope = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-ktx", version.ref = "vmscope" }
+lifecyclescope = {group = "androidx.lifecycle", name = "lifecycle-runtime-ktx",version.ref = "lfscope" }
+
+junit = {group = "junit", name = "junit", version.ref = "junitver"}
+mockito = {group = "org.mockito.kotlin", name ="mockito-kotlin", version.ref = "mockitover" }
+coroutinestest = {group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-test",version.ref = "coroutinesver" }
+navigation-fragment-ktx = { group = "androidx.navigation", name = "navigation-fragment-ktx", version = "2.7.6" }
+navigation-ui-ktx = { group = "androidx.navigation", name = "navigation-ui-ktx", version = "2.7.6" }
 
 
 [plugins]
