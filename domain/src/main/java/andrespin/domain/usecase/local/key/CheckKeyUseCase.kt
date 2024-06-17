@@ -8,7 +8,6 @@ import andrespin.domain.repository.WordRepository
 import andrespin.domain.usecase.UseCaseException
 import andrespin.domain.usecase.remote.SearchNewWordUseCase
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.flow
 
 class CheckKeyUseCase(
