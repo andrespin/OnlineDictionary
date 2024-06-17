@@ -7,6 +7,7 @@ import andrespin.domain.entity.PreviousWord
 import andrespin.domain.entity.Word
 import andrespin.domain.usecase.UseCaseException
 import andrespin.domain.usecase.local.word.GetAllWordsUseCase
+import andrespin.domain.usecase.local.word.GetPrevWordUseCase
 import andrespin.domain.usecase.remote.SearchNewWordUseCase
 import andrespin.domain.usecase.sorter.SortPrevWordsUseCase
 import andrespin.presentation.AppViewModel
@@ -26,6 +27,7 @@ class DictionaryViewModel
     private val searchNewWordUseCase: SearchNewWordUseCase,
     private val getPrevWords: GetAllWordsUseCase,
     private val sortPrevWords: SortPrevWordsUseCase,
+    private val getPrevWord: GetPrevWordUseCase
 ) : AppViewModel<DictionaryIntent, DictionaryState>() {
 
     init {
@@ -54,17 +56,12 @@ class DictionaryViewModel
 
         viewModelScope.launch(handler) {
             emitState.emit(DictionaryState.Loading)
-            Log.d(vmTag, "it.word ${it}")
-            searchNewWordUseCase.invoke(it.word).collect{
-                when(it) {
+            searchNewWordUseCase.invoke(it.word).collect {
+                when (it) {
                     is Result.Success -> showWord(it)
                     is Result.Error -> showError(it.exception)
                 }
-
             }
-
-            Log.d(vmTag, "searchNewWord")
-
         }
 
     }
@@ -116,34 +113,16 @@ class DictionaryViewModel
         return l
     }
 
-//    private suspend fun showPreviousWords(it: DictionaryIntent.ShowPreviousWords) =
-//        viewModelScope.launch {
-//            Log.d(vmTag, "showPreviousWords")
-//            val words = getPrevWords.invoke()
-//            if (it.query == "") {
-//                val convertedToPrevWords = convertToPrevWord(words)
-//                emitState.emit(DictionaryState.ShowPreviousWords(convertedToPrevWords))
-//            } else {
-//                val wordsHighlightedLetters = sortPrevWords.invoke(it.query, words)
-//                emitState.emit(DictionaryState.ShowPreviousWords(wordsHighlightedLetters))
-//            }
-//        }
-//
-//    private fun hidePreviousWords() = viewModelScope.launch {
-//        val emptyPrevWordsList = mutableListOf<PreviousWord>()
-//        emitState.emit(DictionaryState.ShowPreviousWords(emptyPrevWordsList))
-//    }
-
-
     private suspend fun getPrevWord(it: DictionaryIntent.GetPrevWord) {
-
+        getPrevWord.invoke(it.word).collect {
+            emitState.emit(DictionaryState.ShowWord(it!!))
+        }
     }
 
     private fun hidePreviousWords() = viewModelScope.launch {
         val emptyPrevWordsList = mutableListOf<PreviousWord>()
         emitState.emit(DictionaryState.ShowPreviousWords(emptyPrevWordsList))
     }
-
 
 }
 

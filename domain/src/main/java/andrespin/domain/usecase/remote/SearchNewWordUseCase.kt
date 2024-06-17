@@ -6,42 +6,41 @@ import andrespin.domain.usecase.local.key.GetKeyUseCase
 import andrespin.domain.usecase.sorter.GetWordLangUseCase
 import andrespin.domain.entity.Result
 import andrespin.domain.usecase.UseCaseException
-import android.util.Log
+import andrespin.domain.usecase.local.word.GetAllWordsUseCase
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.flow
+
 
 class SearchNewWordUseCase(
     private val wordRepo: WordRepository,
     private val getWordLang: GetWordLangUseCase,
     private val getKeyUseCase: GetKeyUseCase,
+    private val getAllWordsUseCase: GetAllWordsUseCase,
 ) {
-
-    operator fun invoke(word: String): Flow<Result<Word>> = try {
-        combine(
-            getWordLang.invoke(word),
-            getKeyUseCase.invoke()
-        ) { lang, key ->
-            Log.d("SearchNewWordUseCase", "lang $lang key $key")
-            wordRepo.getWord(word, lang.lang, key).first()
-        }
-    } catch (e: UseCaseException.NoKeyException) {
-        flow{
+    operator fun invoke(word: String): Flow<Result<Word>> = flow {
+        val w = wordRepo.getWord(word).first()
+        if (w != null) emit(Result.Success(w)) else try {
+            emit(getWord(word))
+        } catch (e: UseCaseException.NoKeyException) {
             emit(Result.Error(e))
         }
     }
 
-//
-//        combine(
-//            getWordLang.invoke(word),
-//            getKeyUseCase.invoke()
-//        ) { lang, key ->
-//            Log.d("SearchNewWordUseCase", "lang $lang key $key")
-//            wordRepo.getWord(word, lang.lang, key).first()
-//        }.catch {
-//            Log.d("SearchNewWordUseCase", "Exception $it")
-//        }
+    private suspend fun getWord(word: String): Result<Word> =
+        when (val k = getKeyUseCase.invoke().first()) {
+            is Result.Success -> {
+                getWord(word, k.data)
+            }
+
+            is Result.Error -> {
+                throw UseCaseException.NoKeyException(k.exception)
+            }
+        }
+
+    private suspend fun getWord(word: String, key: String) =
+        wordRepo.getWord(word, getWordLang.invoke(word).first().lang, key).first()
+
 }
 
 

@@ -20,7 +20,11 @@ class SettingsFragment : SettingsFragmentAbstract<FragmentSettingsBinding, Setti
 
     override fun initClickListeners() {
         setOnNavigationClickListener()
-        setInsertKeyClickListener()
+        initInsertKeyClickListener()
+    }
+
+    override fun process() {
+        getKey()
     }
 
     override fun observeViewModel(): Job = lifecycleScope.launch {
@@ -31,9 +35,11 @@ class SettingsFragment : SettingsFragmentAbstract<FragmentSettingsBinding, Setti
                 SettingsState.KeyIsNotCorrect -> showKeyIsNotCorrect()
                 SettingsState.Loading -> showKeyIsChecking()
                 SettingsState.SetKey -> showSetKey()
+                SettingsState.KeyFieldIsEmpty -> showKeyFieldIsEmpty()
+                is SettingsState.KeyIsCorrectData -> showKeyIsCorrect(it.key)
+                is SettingsState.KeyIsNotCorrectData -> showKeyIsNotCorrect(it.key)
             }
         }
-
-
     }
+
 }

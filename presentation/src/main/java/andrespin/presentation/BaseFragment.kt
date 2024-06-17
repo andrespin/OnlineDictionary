@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.viewbinding.ViewBinding
 import kotlinx.coroutines.Job
 
@@ -41,7 +42,7 @@ abstract class BaseFragment<VB : ViewBinding, VM : BaseViewModel> : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View? {
         Log.d("$frTag lifecycle", "onCreateView")
         _viewBinding = bindingInflater.invoke(inflater, container, false)
@@ -102,7 +103,7 @@ abstract class BaseFragment<VB : ViewBinding, VM : BaseViewModel> : Fragment() {
 
     private fun initRootListener() =
         binding.root.setOnClickListener {
-           // hideKeyboard()
+            // hideKeyboard()
             rootOnClick()
         }
 
@@ -132,6 +133,19 @@ abstract class BaseFragment<VB : ViewBinding, VM : BaseViewModel> : Fragment() {
         val duration = Toast.LENGTH_LONG
         val toast = Toast.makeText(requireContext(), text, duration)
         toast.show()
+    }
+
+    protected fun navigate(routes: NavRoutes) {
+        when (routes) {
+            NavRoutes.NavigateToAboutApp ->
+                findNavController().navigate(R.id.action_dictionary_to_about_app)
+
+            NavRoutes.NavigateToSettings ->
+                findNavController().navigate(R.id.action_dictionary_to_settings)
+
+            NavRoutes.NavigateBack ->
+                findNavController().popBackStack()
+        }
     }
 
 }

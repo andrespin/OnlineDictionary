@@ -7,7 +7,7 @@ interface LocalWordDataSource {
 
     fun getWords(): Flow<List<Word>>
 
-    fun getWord(word: String): Flow<Word>
+    fun getWord(word: String): Flow<Word?>
 
     suspend fun insertWord(word: Word)
 

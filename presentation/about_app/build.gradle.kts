@@ -50,6 +50,8 @@ dependencies {
     androidTestImplementation(libs.versions.androidxjunit)
     androidTestImplementation(libs.versions.espressocore)
 
+
+
     // Hilt
     implementation(libs.hilt.android.core)
     kapt(libs.hilt.compiler)
@@ -57,4 +59,10 @@ dependencies {
     // Modules
     implementation(project(":domain"))
     implementation(project(":presentation"))
+
+    // Navigation
+    implementation(libs.navigationfragmentktx)
+    implementation(libs.navigationuiktx)
+    implementation(libs.navigationdynamicfeaturesfragment)
+    androidTestImplementation(libs.navigationtesting)
 }

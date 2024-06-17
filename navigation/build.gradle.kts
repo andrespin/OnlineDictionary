@@ -1,14 +1,12 @@
+@Suppress("DSL_SCOPE_VIOLATION") // TODO: Remove once KTIJ-19369 is fixed
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
-    alias(libs.plugins.ksp)
-    alias(libs.plugins.hilt)
-    alias(libs.plugins.kapt)
 }
 
 android {
-    namespace = "andrespin.settings"
-    compileSdk = 34
+    namespace = "andrespin.navigation"
+    compileSdk = 33
 
     defaultConfig {
         minSdk = 24
@@ -33,25 +31,18 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
-    buildFeatures {
-        viewBinding = true
-        dataBinding = true
-    }
 }
 
 dependencies {
 
-    implementation(libs.versions.ktx)
-    implementation(libs.versions.appcompat)
-    implementation(libs.versions.material)
-    implementation(libs.versions.constraintlayout)
-    testImplementation(libs.versions.junit)
-    androidTestImplementation(libs.versions.androidxjunit)
-    androidTestImplementation(libs.versions.espressocore)
-
-//     Hilt
-    implementation(libs.hilt.android.core)
-    kapt(libs.hilt.compiler)
+    implementation(libs.core.ktx)
+    implementation(libs.appcompat)
+    implementation(libs.material)
+    implementation(libs.navigation.fragment.ktx)
+    implementation(libs.navigation.ui.ktx)
+    testImplementation(libs.junit)
+    androidTestImplementation(libs.androidx.test.ext.junit)
+    androidTestImplementation(libs.espresso.core)
 
     // Navigation
     implementation(libs.navigationfragmentktx)
@@ -59,9 +50,4 @@ dependencies {
     implementation(libs.navigationdynamicfeaturesfragment)
     androidTestImplementation(libs.navigationtesting)
 
-    implementation (libs.lifecyclescope)
-    implementation (libs.viewmodelscope)
-
-    implementation(project(":domain"))
-    implementation(project(":presentation"))
 }

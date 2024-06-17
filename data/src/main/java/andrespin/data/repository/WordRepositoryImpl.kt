@@ -15,12 +15,14 @@ class WordRepositoryImpl(
 ) : WordRepository {
     override fun getWords(): Flow<List<Word>> = local.getWords()
 
-    override fun getWord(word: String): Flow<Word> = local.getWord(word)
+    override fun getWord(word: String): Flow<Word?> = local.getWord(word)
     override fun getWord(word: String, lang: String, key: String): Flow<Result<Word>> =
         remote.getWord(word, lang, key)
             .onEach {
                 if (it is Result.Success)
-                    local.insertWord(it.data)
+                    try {
+                        local.insertWord(it.data)
+                    } catch (e : android.database.sqlite.SQLiteConstraintException) { }
             }
 
     override suspend fun insertWord(word: Word) = local.insertWord(word)

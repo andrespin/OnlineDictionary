@@ -17,8 +17,9 @@ class LocalWordDataSourceImpl @Inject constructor(private val wordDao: WordDao) 
         })
     }
 
-    override fun getWord(word: String): Flow<Word> = flow {
-        emit(wordDao.getWord(word).mapToWord())
+    override fun getWord(word: String): Flow<Word?> = flow {
+        println("wordDao.getWord(word).mapToWord() ${wordDao.getWord(word)?.mapToWord()}")
+        emit(wordDao.getWord(word)?.mapToWord())
     }
 
     override suspend fun insertWord(word: Word) = wordDao.insertWord(word.mapToWordEntity())

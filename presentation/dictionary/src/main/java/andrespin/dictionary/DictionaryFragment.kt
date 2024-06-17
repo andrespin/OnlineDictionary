@@ -4,7 +4,6 @@ import andrespin.dictionary.databinding.FragmentDictionaryBinding
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.fragment.NavHostFragment
 import dagger.hilt.android.AndroidEntryPoint
 
 import kotlinx.coroutines.flow.collectLatest
@@ -21,25 +20,15 @@ class DictionaryFragment :
     override val frTag: String
         get() = "DictionaryFragment"
 
-//    private val navHostFragment: NavHostFragment by lazy {
-//        supportFragmentManager.findFragmentById(R.id.fragment_container_view)
-//                as NavHostFragment
-//    }
-
-
-
-
-
     override fun initClickListeners() {
         initOnQueryTextListener()
         initOnSearchClickListener()
         initOnSearchCloseListener()
-     //   getParentFragmentManager().findFragmentById()
-
+        initOnMenuItemClickListener()
+        initNavigationOnClickListener()
     }
 
     override fun process() = initAdapters(this)
-
 
     override fun observeViewModel() = lifecycleScope.launch {
         model.state.collectLatest {

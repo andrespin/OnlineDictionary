@@ -1,7 +1,6 @@
 package andrespin.dictionary.adapter.previous_word
 
 import andrespin.dictionary.DictionaryFragment
-import andrespin.dictionary.R
 import andrespin.dictionary.databinding.ItemPreviousWordBinding
 import andrespin.domain.entity.PreviousWord
 import android.text.SpannableString
@@ -14,7 +13,6 @@ class PreviousWordsViewHolder(
     private val vb: ItemPreviousWordBinding,
     private val dictionaryFragment: DictionaryFragment,
 ) : RecyclerView.ViewHolder(vb.root) {
-
 
     private val highlightColor =
         dictionaryFragment.context?.let {

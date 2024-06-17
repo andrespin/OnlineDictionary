@@ -5,11 +5,13 @@ import andrespin.dictionary.adapter.word.WordAdapter
 import andrespin.dictionary.databinding.FragmentDictionaryBinding
 import andrespin.domain.entity.PreviousWord
 import andrespin.presentation.BaseFragment
+import andrespin.presentation.NavRoutes
 import android.util.Log
 import android.view.View
 import androidx.appcompat.widget.SearchView
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.coroutines.launch
@@ -67,6 +69,30 @@ abstract class DictionaryFragmentAbstract<
         false
     }
 
+    protected fun initOnMenuItemClickListener() {
+        binding.topAppBar.setOnMenuItemClickListener {  menuItem ->
+
+            when(menuItem.itemId)  {
+                andrespin.presentation.R.id.aboutApp -> {
+                    navigate(NavRoutes.NavigateToAboutApp)
+                    true
+                }
+
+                andrespin.presentation.R.id.settings -> {
+                    navigate(NavRoutes.NavigateToSettings)
+                    true
+                }
+
+                else -> false
+            }
+        }
+    }
+
+    protected fun initNavigationOnClickListener() =
+        binding.topAppBar.setNavigationOnClickListener {
+            findNavController().popBackStack()
+        }
+
     private fun turnSearchStateOn() {
         binding.layoutSearch.search.isIconified = false
     }
@@ -81,16 +107,11 @@ abstract class DictionaryFragmentAbstract<
         if (!query.isNullOrBlank()) model.intent.emit(DictionaryIntent.SearchNewWord(query))
     }
 
-
-    protected fun showPrevWords(it: DictionaryState.ShowPreviousWords) {
+    protected fun showPrevWords(it: DictionaryState.ShowPreviousWords) =
         setWordsToWordsAdapter(it.words)
-    }
 
-    protected fun setWordsToWordsAdapter(words: List<PreviousWord>) {
-        Log.d("DictionaryFragmentAbstract", "prevWords ${words}")
+    private fun setWordsToWordsAdapter(words: List<PreviousWord>) =
         previousWordsAdapter.setData(words)
-    }
-
 
     protected fun showUnknown() {
         hideAll()
@@ -203,26 +224,19 @@ abstract class DictionaryFragmentAbstract<
         binding.layoutDictionaryLoading.root.visibility = View.GONE
     }
 
-
-
     protected fun initOnMenuItemClickListener(
         navController: NavController
     ) {
-
         binding.topAppBar.setOnMenuItemClickListener { menuItem ->
-
             when (menuItem.itemId) {
-
                 andrespin.presentation.R.id.settings -> {
                     navigateAboutApp(navController)
                     true
                 }
-
                 andrespin.presentation.R.id.aboutApp -> {
                     navigateSettings(navController)
                     true
                 }
-
                 else -> false
             }
         }
@@ -232,19 +246,11 @@ abstract class DictionaryFragmentAbstract<
         navController: NavController
     ) = navController.popBackStack()
 
-
     private fun navigateAboutApp(
         navController: NavController,
     ) = navController.navigate(andrespin.presentation.R.id.aboutApp)
 
-
     private fun navigateSettings(
         navController: NavController
     ) = navController.navigate(andrespin.presentation.R.id.settings)
-
-
-
-
-
-
 }

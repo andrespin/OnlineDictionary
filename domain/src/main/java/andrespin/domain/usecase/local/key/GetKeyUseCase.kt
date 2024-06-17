@@ -1,43 +1,19 @@
 package andrespin.domain.usecase.local.key
 
 import andrespin.domain.repository.KeyRepository
-import andrespin.domain.usecase.UseCaseException
 import andrespin.domain.usecase.UseCaseException.NoKeyException
-import android.util.Log
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.catch
-import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.flow.flowOn
+import andrespin.domain.entity.Result
+import kotlinx.coroutines.flow.first
 
 class GetKeyUseCase(private val keyRepo: KeyRepository) {
-
-    operator fun invoke(): Flow<String> =
+    operator fun invoke(): Flow<Result<String>> = flow {
         try {
-//            val k = keyRepo.getKey()
-//            Log.d("GetKeyUseCase", "key is ${k}")
-//            k
-//            keyRepo.getKey()
-            throw NoKeyException(Exception("GetKeyUseCaseException"))
+            val k = keyRepo.getKey().first()
+            emit(Result.Success(k))
         } catch (noKeyException: NoKeyException) {
-            throw NoKeyException(Exception(noKeyException.message))
+            emit(Result.Error(noKeyException))
         }
-
-//            .catch {
-//                when(it) {
-//                    is NoKeyException -> throw NoKeyException(Exception(it.message))
-//                    else -> throw UseCaseException.createFromThrowable(it)
-//                }
-//            }
-
-//    operator fun invoke(): Flow<String> = flow {
-//        emit(keyRepo.getKey().first())
-//    }.catch {
-//        when(it) {
-//            is NoKeyException -> throw NoKeyException(Exception())
-//            else -> throw UseCaseException.createFromThrowable(it)
-//        }
-//    }
-
+    }
 }

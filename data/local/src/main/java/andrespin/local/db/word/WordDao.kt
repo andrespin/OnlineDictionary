@@ -20,6 +20,6 @@ interface WordDao {
     suspend fun getAllWords(): List<WordEntity>
 
     @Query("SELECT * FROM words_table where txtOrig=:w")
-    suspend fun getWord(w: String): WordEntity
+    suspend fun getWord(w: String): WordEntity?
 
 }

@@ -2,8 +2,10 @@ package andrespin.onlinedictionary.di
 
 import andrespin.domain.repository.KeyRepository
 import andrespin.domain.repository.WordRepository
+import andrespin.domain.usecase.local.key.CheckKeyUseCase
 import andrespin.domain.usecase.local.key.GetKeyUseCase
 import andrespin.domain.usecase.local.word.GetAllWordsUseCase
+import andrespin.domain.usecase.local.word.GetPrevWordUseCase
 import andrespin.domain.usecase.remote.SearchNewWordUseCase
 import andrespin.domain.usecase.sorter.FindMatchingLettersInWordUseCase
 import andrespin.domain.usecase.sorter.GetWordLangUseCase
@@ -41,10 +43,12 @@ class UseCaseModule {
         wordRepo: WordRepository,
         getWordLang: GetWordLangUseCase,
         getKeyUseCase: GetKeyUseCase,
+        getAllWordsUseCase: GetAllWordsUseCase
     ) = SearchNewWordUseCase(
         wordRepo,
         getWordLang,
-        getKeyUseCase
+        getKeyUseCase,
+        getAllWordsUseCase
     )
 
     @Provides
@@ -56,5 +60,17 @@ class UseCaseModule {
         langSorter: SortWordLangUseCase,
         getWordLang: GetWordLangUseCase,
     ) = SortPrevWordsUseCase(matchingLetters, langSorter, getWordLang)
+
+
+    @Provides
+    fun provideCheckKeyUseCase(
+        keyRepo: KeyRepository,
+        wordRepo: WordRepository
+    ) = CheckKeyUseCase(keyRepo, wordRepo)
+
+    @Provides
+    fun provideGetPrevWordUseCase(
+        wordRepo: WordRepository
+    ) = GetPrevWordUseCase(wordRepo)
 
 }

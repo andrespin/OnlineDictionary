@@ -45,6 +45,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="40dp"
             android:gravity="center|top"
+            android:autoLink="web"
+            android:linksClickable="true"
             android:text="@string/settings_hyperlink"
             android:textSize="18sp" />
 
@@ -83,6 +85,17 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="Данный ключ не подходит"
+                    android:textColor="@android:color/holo_red_dark"
+                    android:textSize="18sp"
+                    android:visibility="gone"/>
+
+
+                <TextView
+                    android:id="@+id/txtHintKeyIsEmpty"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Введите ключ"
                     android:textColor="@android:color/holo_red_dark"
                     android:textSize="18sp"
                     android:visibility="gone"/>

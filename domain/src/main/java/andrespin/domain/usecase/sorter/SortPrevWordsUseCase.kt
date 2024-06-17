@@ -13,11 +13,8 @@ class SortPrevWordsUseCase(
 ) {
     operator fun invoke(query: String, words: List<Word>): Flow<List<PreviousWord>> = flow{
         val lang = getWordLang.invoke(query).first()
-
         val sortedWords = langSorter.invoke(words, lang).first()
-
         val wordsHighlightedLetters = matchingLetters.invoke(sortedWords, query).first()
-
         emit(wordsHighlightedLetters)
     }
 

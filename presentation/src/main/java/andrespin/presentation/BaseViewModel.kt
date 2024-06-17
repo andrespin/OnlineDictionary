@@ -11,8 +11,6 @@ import kotlinx.coroutines.launch
 
 abstract class BaseViewModel : ViewModel() {
 
-
-
     abstract val vmTag: String
     override fun onCleared() {
         super.onCleared()
@@ -33,13 +31,5 @@ abstract class AppViewModel<i : Intent, s : State> : BaseViewModel() {
     val state: SharedFlow<s> get() = emitState
 
     abstract fun handleIntent(): Job
-
-//    init {
-//        viewModelScope.launch {
-////            actionFlow.collect {
-////                handleAction(it)
-////            }
-//        }
-//    }
 
 }

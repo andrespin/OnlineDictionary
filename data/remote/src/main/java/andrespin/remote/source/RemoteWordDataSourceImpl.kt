@@ -18,19 +18,25 @@ import javax.inject.Inject
 class RemoteWordDataSourceImpl
 @Inject constructor(private val wordApiService: WordApiService) : RemoteWordDataSource {
 
+    private val tag = "RemoteWordDataSourceImpl"
+
     override fun getWord(word: String, lang: String, key: String): Flow<Result<Word>> =
         flow<Result<Word>> {
            // throw java.net.SocketTimeoutException()
-            Log.d("RemoteWordDataSourceImpl", "word $word , lang $lang, key $key ")
+            Log.d(tag, "word $word , lang $lang, key $key ")
             val res = wordApiService.getWordTranslation(key, lang, word)
 
             if (res.isSuccessful) {
                 emit(Result.Success(res.body()!!.mapToWord()))
             } else {
-                Log.d("RemoteWordDataSourceImpl", "res.code ${res.code()} ${res.body()}")
+                Log.d(tag, "res.code ${res.code()} ${res.body()}")
+                Log.d(tag, "res.message() ${res.message()} res.errorBody() ${res.errorBody()}")
+//                res.message()
+//                res.errorBody()
+                // code 401
                 when (res.code()) {
                     401 -> {
-                        Log.d("RemoteWordDataSourceImpl", "res.code is ${res.code()} ${res.body()}")
+                        Log.d(tag, "res.code is ${res.code()} ${res.body()}")
                         throw UseCaseException.InvalidKeyException(
                             Exception(
                                 res.errorBody().toString()
@@ -39,7 +45,7 @@ class RemoteWordDataSourceImpl
                     }
 
                     403 -> {
-                        Log.d("RemoteWordDataSourceImpl", "res.code is ${res.code()} ${res.body()}")
+                        Log.d(tag, "res.code is ${res.code()} ${res.body()}")
                         throw UseCaseException.InvalidKeyException(
                             Exception(
                                 res.errorBody().toString()
@@ -51,7 +57,6 @@ class RemoteWordDataSourceImpl
         }.flowOn(Dispatchers.IO)
             .catch {
                 Log.d("RemoteWordDataSourceImpl", " ${it}")
-
                 when (it) {
                     is java.net.UnknownHostException -> emit(Result.Error(UseCaseException.NoConnectionException(it)))
                     is java.lang.IndexOutOfBoundsException -> emit(Result.Error(UseCaseException.NotFoundException(it)))

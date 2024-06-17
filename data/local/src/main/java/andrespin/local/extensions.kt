@@ -36,7 +36,7 @@ private var translationsOfParticiple = EmptyField
 
 private var translationsOfAdverbialParticiple = EmptyField
 
-fun Word. mapToWordEntity(): WordEntity {
+fun Word.mapToWordEntity(): WordEntity {
     val wordDescriptions = this.wordDescriptions
     if (wordDescriptions != null) associateTranslationsWithPartOfSpeechSections(wordDescriptions)
     return WordEntity(

@@ -16,7 +16,4 @@ abstract class LocalDataSourceModule {
     @Binds
     abstract fun bindWordDataSource(wordDataSource: LocalWordDataSourceImpl): LocalWordDataSource
 
-//    @Binds
-//    abstract fun bindKeyDataSource(keyDataSource: LocalKeyDataSourceImpl): LocalKeyDataSource
-
 }

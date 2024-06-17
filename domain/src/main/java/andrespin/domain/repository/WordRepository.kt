@@ -8,7 +8,7 @@ interface WordRepository {
 
     fun getWords(): Flow<List<Word>>
 
-    fun getWord(word: String): Flow<Word>
+    fun getWord(word: String): Flow<Word?>
 
     fun getWord(word: String, lang: String, key: String): Flow<Result<Word>>
 

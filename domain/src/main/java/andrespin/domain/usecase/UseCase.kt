@@ -1,3 +1,0 @@
-package andrespin.domain.usecase
-
-

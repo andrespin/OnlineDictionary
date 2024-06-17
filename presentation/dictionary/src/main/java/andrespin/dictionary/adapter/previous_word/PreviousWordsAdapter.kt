@@ -40,7 +40,6 @@ class PreviousWordsAdapter(
                         DictionaryIntent.GetPrevWord(prevWords[pos].word.txtOrig)
                     )
                 }
-                Log.d(tag, pos.toString())
             }
         }
 

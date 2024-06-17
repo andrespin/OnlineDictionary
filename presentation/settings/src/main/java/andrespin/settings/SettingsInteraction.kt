@@ -11,6 +11,11 @@ sealed class SettingsState : State {
     object KeyIsCorrect: SettingsState()
     object KeyIsNotCorrect: SettingsState()
 
+    data class KeyIsCorrectData(val key: String): SettingsState()
+
+    data class KeyIsNotCorrectData(val key: String): SettingsState()
+
+    data object KeyFieldIsEmpty: SettingsState()
     object SetKey: SettingsState()
 
 }

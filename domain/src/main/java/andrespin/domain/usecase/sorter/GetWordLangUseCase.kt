@@ -10,21 +10,14 @@ import java.util.Locale
 class GetWordLangUseCase {
 
     operator fun invoke(word: String): Flow<Language> = flow {
-        val l = getLang(word)
-        Log.d("GetWordLangUseCase", "lang of $word is $l")
-//        throw Exception("GetWordLangUseCaseException")
-        emit(l)
+        emit(getLang(word))
     }
 
     private fun getLang(word: String): Language {
-
         val w = word.lowercase(Locale.ROOT)
-
         val array = w.toCharArray()
-
         val isEng = isEng(array)
         val isRus = isRus(array)
-
         return if (isEng) {
             Language.English
         } else if (isRus) {
@@ -32,7 +25,6 @@ class GetWordLangUseCase {
         } else {
             Language.NotIdentified
         }
-
     }
 
     private fun isEng(array: CharArray): Boolean {
