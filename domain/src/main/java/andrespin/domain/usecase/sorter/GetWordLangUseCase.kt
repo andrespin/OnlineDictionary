@@ -1,7 +1,6 @@
 package andrespin.domain.usecase.sorter
 
 import andrespin.domain.entity.Language
-import android.util.Log
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import java.util.Locale

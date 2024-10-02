@@ -28,7 +28,6 @@ class RemoteWordDataSourceImpl
             } else {
                 when (res.code()) {
                     401 -> {
-                        Log.d(tag, "res.code is ${res.code()} ${res.body()}")
                         throw UseCaseException.InvalidKeyException(
                             Exception(
                                 res.errorBody().toString()
@@ -37,7 +36,6 @@ class RemoteWordDataSourceImpl
                     }
 
                     403 -> {
-                        Log.d(tag, "res.code is ${res.code()} ${res.body()}")
                         throw UseCaseException.InvalidKeyException(
                             Exception(
                                 res.errorBody().toString()
@@ -48,7 +46,6 @@ class RemoteWordDataSourceImpl
             }
         }.flowOn(Dispatchers.IO)
             .catch {
-                Log.d("RemoteWordDataSourceImpl", " ${it}")
                 when (it) {
                     is java.net.UnknownHostException -> emit(Result.Error(UseCaseException.NoConnectionException(it)))
                     is java.lang.IndexOutOfBoundsException -> emit(Result.Error(UseCaseException.NotFoundException(it)))

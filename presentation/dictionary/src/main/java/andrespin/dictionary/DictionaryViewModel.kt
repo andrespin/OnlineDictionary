@@ -1,9 +1,7 @@
 package andrespin.dictionary
 
 import andrespin.domain.entity.Result
-
 import andrespin.domain.entity.PreviousWord
-
 import andrespin.domain.entity.Word
 import andrespin.domain.usecase.UseCaseException
 import andrespin.domain.usecase.local.word.GetAllWordsUseCase

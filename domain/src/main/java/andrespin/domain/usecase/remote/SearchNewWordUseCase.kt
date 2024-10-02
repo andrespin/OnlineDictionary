@@ -11,7 +11,6 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.flow
 
-
 class SearchNewWordUseCase(
     private val wordRepo: WordRepository,
     private val getWordLang: GetWordLangUseCase,

@@ -1,20 +1,15 @@
 package andrespin.settings
 
-import andrespin.domain.NoKey
 import andrespin.domain.entity.Result
-import andrespin.domain.usecase.UseCaseException
 import andrespin.domain.usecase.local.key.CheckKeyUseCase
 import andrespin.domain.usecase.local.key.GetKeyUseCase
 import andrespin.presentation.AppViewModel
-import android.util.Log
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.catch
-import kotlinx.coroutines.flow.first
 import javax.inject.Inject
 
 @HiltViewModel

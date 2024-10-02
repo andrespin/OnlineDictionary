@@ -5,7 +5,6 @@ import andrespin.dictionary.DictionaryIntent
 import andrespin.dictionary.DictionaryViewModel
 import andrespin.dictionary.databinding.ItemPreviousWordBinding
 import andrespin.domain.entity.PreviousWord
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.lifecycle.lifecycleScope

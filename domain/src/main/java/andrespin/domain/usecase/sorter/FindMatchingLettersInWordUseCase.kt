@@ -5,7 +5,6 @@ import andrespin.domain.entity.Word
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 
-// val dispatcher: CoroutineDispatcher = Dispatchers.Default
 class FindMatchingLettersInWordUseCase() {
 
     operator fun invoke(words: List<Word>, query: String) : Flow<List<PreviousWord>> {

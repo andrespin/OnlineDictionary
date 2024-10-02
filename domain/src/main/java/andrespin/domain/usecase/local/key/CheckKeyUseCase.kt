@@ -1,12 +1,9 @@
 package andrespin.domain.usecase.local.key
 
-import andrespin.domain.NoKey
 import andrespin.domain.entity.Language
 import andrespin.domain.entity.Result
 import andrespin.domain.repository.KeyRepository
 import andrespin.domain.repository.WordRepository
-import andrespin.domain.usecase.UseCaseException
-import andrespin.domain.usecase.remote.SearchNewWordUseCase
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 

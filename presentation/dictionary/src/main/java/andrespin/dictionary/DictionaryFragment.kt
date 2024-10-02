@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.lifecycle.lifecycleScope
 import dagger.hilt.android.AndroidEntryPoint
-
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
